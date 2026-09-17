@@ -1,0 +1,41 @@
+name: Azure Function Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  myjob:
+    runs-on: windows-latest
+
+    steps:
+
+      # 1. Checkout Repository
+      - name: Load Repo
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # 3. Check Node Version
+      - name: Node Version
+        run: node -v
+
+      # 4. Install Dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # 5. Deploy to Azure Function App
+      - name: Deploy Azure Function
+        uses: Azure/functions-action@v1
+        with:
+          app-name: "YOUR_FUNCTION_APP_NAME"
+          package: "."
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
