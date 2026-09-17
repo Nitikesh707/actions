@@ -1,0 +1,12 @@
+{
+  "name": "my-function-app",
+  "version": "1.0.0",
+  "description": "Basic Azure Function App",
+  "main": "src/functions/*.js",
+  "scripts": {
+    "start": "func start"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.0.0"
+  }
+}
